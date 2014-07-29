@@ -45,3 +45,27 @@ var fiveOrMoreDivs = function(node, depth){
   }
   return divCount;
 }
+
+// also with no helper function, but this time it stops
+// once it finds 5 divs
+var efficientFiveOrMoreDivs = function(node, depth, divCount){
+  node = node || document.body;
+  depth = depth || 0;
+  divCount = divCount || 0;
+  if(node.tagName === 'DIV'){
+    divCount++;
+  }
+  for(var i = 0; i < node.children.length; i++){
+    var count = efficientFiveOrMoreDivs(node.children[i], depth + 1, divCount);
+    if(count === true){
+      return true;
+    }
+    if(count !== true){
+      divCount = count;
+    }
+  }
+  if(depth === 0){
+    return divCount >= 5;
+  }
+  return divCount >= 5 || divCount;
+}
