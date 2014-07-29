@@ -13,6 +13,22 @@ var containsFiveOrMoreDivs = function(node){
   return counter >= 5;
 }
 
+// same function, but stops once it hits 5 divs
+var efficientContainsFiveOrMoreDivs = function(node){
+  node = node || document.body;
+  var counter = 0;
+  var countDivs = function(node){
+    if(node.tagName === 'DIV') counter++;
+    if(counter >= 5) return 0;
+    for(var i = 0; i < node.children.length; i++){
+      countDivs(node.children[i]);
+      if(counter >= 5) break;
+    }
+  }
+  countDivs(node);
+  return counter >= 5;
+}
+
 // same function, with no inner helper function
 var fiveOrMoreDivs = function(node, depth){
   node = node || document.body;
