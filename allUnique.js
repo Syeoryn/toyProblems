@@ -9,3 +9,16 @@ var allUnique = function(string){
   }
   return true;
 }
+
+
+// What if you can't use additional data structures?
+
+var allUniqueCharacters = function(string){
+  for(var i = 0; i < string.length; i++){
+    if( ~string.indexOf(string[i], i + 1) ) return false;
+  }
+  return true;
+}
+
+// Without additional data structures, the time complexity 
+// become O(n^2) rather than O(n).
