@@ -4,15 +4,18 @@
 
 var runLengthDecode = function(encoding){
   decoding = '';
+  // split the encoding into number-letter pairs
   var letters = x.match(/\d*\w/g);
   
+  // for each pair
   for(var set = 0; set < letters.length; set++){
-    // '3a'
     var letter = letters[set].slice(-1);
     var count = letters[set].slice(0,letters[set].length - 1);
     do{
+      // add the letter
       decoding += letter;
       count--;
+      // count times
     } while(count > 0)
   }
 
