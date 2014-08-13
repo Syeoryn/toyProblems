@@ -25,3 +25,12 @@ Queue.prototype.remove = function(){
   // (the first item added to the queue)
   return this._outbox.pop();
 }
+
+
+
+/* Now implemet a queue with two stacks,
+   but maintain the inbox and outbox as private variables */
+
+var queueMaker = function(){
+
+}
