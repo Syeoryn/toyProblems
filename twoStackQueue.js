@@ -45,5 +45,30 @@ Queue.prototype.remove = function(){
 // this means that rather than a constructor, a factory function is used, 
 // which creates new instances of each helper function for each queue that's instantiated
 var queueMaker = function(){
+  // as above, maintain the inbox and outbox stacks;
+  var inbox = [];
+  var outbox = [];
 
+  // but this time, create a collection of methods to return
+  //    --> the getter and setter functions for the queue
+  var queue = {};
+
+  queue.add = function(value){
+    inbox.push(value);
+    console.log(inbox);
+    return value;
+  }
+
+  queue.remove = function(){
+    if(!outbox.length){
+      while(inbox.length){
+        outbox.push(inbox.pop());
+      }
+    }
+    console.log('inbox',inbox);
+    console.log('outbox',outbox);
+    return outbox.pop();
+  }
+
+  return queue;
 }
